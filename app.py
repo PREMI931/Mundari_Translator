@@ -4,7 +4,7 @@ import pandas as pd
 # Load the dictionary CSV
 @st.cache_data
 def load_dictionary():
-    return pd.read_csv("mundari_dictionary.csv")
+    return pd.read_csv("dictionary.csv")  
 
 dictionary_df = load_dictionary()
 
@@ -21,9 +21,11 @@ st.set_page_config(page_title="Mundari Text Translator", page_icon="🗣️")
 st.title("🗣️ Mundari Text Translator")
 st.write("Translate Mundari words between Latin, Devanagari, Ol Chiki, and English.")
 
+# User inputs
 input_text = st.text_input("Enter Mundari word:")
 input_script = st.selectbox("Select input script:", ["Latin", "Devanagari", "Ol Chiki"])
 
+# Translate button
 if st.button("Translate"):
     if input_text.strip() == "":
         st.warning("Please enter a word.")
@@ -37,5 +39,3 @@ if st.button("Translate"):
             st.write(f"**English Meaning:** {result['English Meaning']}")
         else:
             st.error("Translation not found.")
-
-
